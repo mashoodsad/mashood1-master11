@@ -11,6 +11,8 @@ class Fav extends StatefulWidget {
 class _FavState extends State<Fav> {
   @override
   Widget build(BuildContext context) {
-    return Container(color: Colors.black,);
+    return Scaffold(
+      body:
+      Container(color: Colors.black,));
   }
 }
