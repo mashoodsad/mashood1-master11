@@ -1,5 +1,4 @@
 import 'dart:async';
-
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -102,22 +101,7 @@ class _HomePageState extends State<HomePage> {
 
 
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('bla-bla  e-com'),
-        leading: Builder(
-          builder: (BuildContext context) {
-            return IconButton(
-              icon: const Icon(Icons.menu),
-              onPressed: () {
-                Scaffold.of(context).openDrawer();
-              },
-              tooltip: MaterialLocalizations
-                  .of(context)
-                  .openAppDrawerTooltip,
-            );
-          },
-        ),
-      ),
+
 
       body: Padding(
         padding: const EdgeInsets.all(8.0),
@@ -300,6 +284,8 @@ class _HomePageState extends State<HomePage> {
               ]),
         ),
       ),
+      //bottomNavigationBar: const DashBoard(),
+
     );
   }
 }
