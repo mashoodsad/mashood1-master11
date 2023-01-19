@@ -9,13 +9,18 @@ class DashBoard extends StatefulWidget {
 }
 
 class _DashBoardState extends State<DashBoard> {
+  void _onItemTapped(int index) {
+    setState(() {
+      _index = index;
+    });
+  }
   @override
   List<Widget> mylist =[
     HomePage(),
     // About(),
     // favorite(),
   ];
-  int index =(0);
+  int _index =(0);
 
 
   Widget build(BuildContext context) {
@@ -31,20 +36,44 @@ class _DashBoardState extends State<DashBoard> {
             ),
             ListTile(
                 title: const Text('Home'),
-                onTap: (){},
+                onTap: (){
+                  Navigator.pop(context);
+                },
             ),
             ListTile(
               title: const Text('About'),
-              onTap: (){},
+              onTap: (){
+                Navigator.pop(context);
+              },
             ),
             ListTile(
               title: const Text('favorite'),
-              onTap: (){},
+              onTap: (){
+                Navigator.pop(context);
+              },
             )
           ],
         ),
       ),
-      body:mylist[index],
+      body:mylist[_index],
+      bottomNavigationBar: BottomNavigationBar(
+        items: const [BottomNavigationBarItem(
+          icon: Icon(Icons.home),
+          label: 'Home',
+        ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.shopping_cart_outlined),
+            label: 'Cart',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.favorite),
+            label: 'favorite',
+          ),
+        ],
+        currentIndex: _index,
+        selectedItemColor: Colors.amber[800],
+        onTap: _onItemTapped,
+      ),
     );
   }
 }
