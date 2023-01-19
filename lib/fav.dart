@@ -13,6 +13,7 @@ class _FavState extends State<Fav> {
   Widget build(BuildContext context) {
     return Scaffold(
       body:
-      Container(color: Colors.black,));
+      Container(
+        child: Text('fav'));
   }
 }
