@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:mashood/HomePage.dart';
+import 'DashBoard.dart';
 import 'NewScreen.dart';
 import 'Singup.dart';
 
@@ -25,7 +25,7 @@ class _LoginState extends State<Login> {
   }
   void _naviHomePage(BuildContext context) {
     Navigator.of(context).push(
-        MaterialPageRoute(builder: (context) => HomePage()));
+        MaterialPageRoute(builder: (context) => DashBoard()));
   }
 
   @override
