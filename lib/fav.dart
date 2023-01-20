@@ -14,6 +14,7 @@ class _FavState extends State<Fav> {
     return Scaffold(
       body:
       Container(
-        child: Text('fav'));
+        child: Text('fav'))
+    );
   }
 }

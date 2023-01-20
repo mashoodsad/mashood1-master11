@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:mashood/AddCart.dart';
 import 'package:mashood/HomePage.dart';
+import 'package:mashood/fav.dart';
 
 class DashBoard extends StatefulWidget {
   const DashBoard({Key? key}) : super(key: key);
@@ -9,6 +11,10 @@ class DashBoard extends StatefulWidget {
 }
 
 class _DashBoardState extends State<DashBoard> {
+  void _navigateToAddCart(BuildContext context) {
+    Navigator.of(context).push(
+        MaterialPageRoute(builder: (context) =>const AddCart()));
+  }
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
   void _onItemTapped(int index) {
     setState(() {
@@ -18,10 +24,8 @@ class _DashBoardState extends State<DashBoard> {
   @override
   List<Widget> mylist =[
     HomePage(),
-    HomePage(),
-    HomePage(),
-    // About(),
-    // favorite(),
+    AddCart(),
+    Fav(),
   ];
   int _index =0;
 
@@ -29,10 +33,12 @@ class _DashBoardState extends State<DashBoard> {
   Widget build(BuildContext context) {
     return Scaffold(
       key: _scaffoldKey,
-      appBar: AppBar(leading: SizedBox(height: 20,width: 20,child: IconButton(icon:Image.asset('assets/images/ff.jpg',fit: BoxFit.fill,), onPressed: (
-          ) {
-        _scaffoldKey.currentState!.openDrawer();
-      },),)),
+      appBar: AppBar(leading: SizedBox(height: 50,width: 50,child: CircleAvatar(
+        child: IconButton(icon:Image.asset('assets/images/ff.jpg',fit: BoxFit.cover,), onPressed: (
+            ) {
+          _scaffoldKey.currentState!.openDrawer();
+        },),
+      ),)),
       drawer: Drawer(
         elevation: 20.0,
         child: ListView(
@@ -52,12 +58,14 @@ class _DashBoardState extends State<DashBoard> {
                 title: const Text('Home'),
                 onTap: (){
                   Navigator.pop(context);
+
                 },
             ),
             ListTile(
-              title: const Text('About'),
+              title: const Text('cart'),
               onTap: (){
                 Navigator.pop(context);
+                _navigateToAddCart(context);
               },
             ),
             ListTile(
@@ -70,24 +78,79 @@ class _DashBoardState extends State<DashBoard> {
         ),
       ),
       body:mylist[_index],
-      bottomNavigationBar: BottomNavigationBar(
-        items: const [BottomNavigationBarItem(
-          icon: Icon(Icons.home),
-          label: 'Home',
+      bottomNavigationBar: Container(
+    height: 60,
+    decoration: BoxDecoration(
+    color: Theme.of(context).primaryColor,
+    borderRadius: const BorderRadius.only(
+    topLeft: Radius.circular(20),
+    topRight: Radius.circular(20),
+
+    ),
+    ),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: [
+            IconButton(
+              enableFeedback: false,
+              onPressed: () {
+                setState(() {
+                  _index = 0;
+                });
+              },
+              icon: _index == 0
+                  ? const Icon(
+                Icons.home_filled,
+                color: Colors.white,
+                size: 35,
+              )
+                  : const Icon(
+                Icons.home_outlined,
+                color: Colors.white,
+                size: 35,
+              ),
+            ),
+            IconButton(
+              enableFeedback: false,
+              onPressed: () {
+                setState(() {
+                  _index = 1;
+                });
+              },
+              icon: _index == 1
+                  ? const Icon(
+                Icons.shopping_cart,
+                color: Colors.white,
+                size: 35,
+              )
+                  : const Icon(
+                Icons.shopping_cart_outlined,
+                color: Colors.white,
+                size: 35,
+              ),
+            ),
+            IconButton(
+              enableFeedback: false,
+              onPressed: () {
+                setState(() {
+                  _index = 2;
+                });
+              },
+              icon: _index == 2
+                  ? const Icon(
+                Icons.favorite,
+                color: Colors.white,
+                size: 35,
+              )
+                  : const Icon(
+                Icons.favorite_border,
+                color: Colors.white,
+                size: 35,
+              ),
+            ),
+          ],
         ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.shopping_cart_outlined),
-            label: 'Cart',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.favorite),
-            label: 'favorite',
-          ),
-        ],
-        currentIndex: _index,
-        selectedItemColor: Colors.amber[800],
-        onTap: _onItemTapped,
-      ),
+    )
     );
   }
 }

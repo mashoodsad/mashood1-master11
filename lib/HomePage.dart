@@ -17,7 +17,6 @@ class _HomePageState extends State<HomePage> {
   late FToast fToast;
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     fToast = FToast();
     fToast.init(context);
