@@ -205,7 +205,6 @@ class _HomePageState extends State<HomePage> {
                                   height: 108,
                                   child: Stack(
                                       children: [
-
                                         SizedBox(
                                             height: 108,
                                             width: MediaQuery
@@ -213,7 +212,7 @@ class _HomePageState extends State<HomePage> {
                                                 .size
                                                 .width,
                                             child: Image.network(
-                                              '${plist[index].url}',
+                        '${plist[index].url}',
                                               fit: BoxFit.cover,)),
                                         Positioned(
                                             top: 10,

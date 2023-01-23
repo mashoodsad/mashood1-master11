@@ -14,23 +14,23 @@ class _AddCartState extends State<AddCart> {
      url: 'assets/images/ff.jpg'),
     Prt(
         name: "Cat food",
-        url: 'assets/images/ff.jpg')
+        url: 'assets/images/ff.jpg'),
   ];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: SizedBox(
-        height: 100,
+        height: 400,
         width: MediaQuery.of(context).size.width,
         child: ListView.builder(
-            scrollDirection: Axis.horizontal,
+            scrollDirection: Axis.vertical,
             shrinkWrap: true,
             itemCount: Cardlist.length,
             itemBuilder: (BuildContext context,
-                int index
-        ){
+                int index){
               return Dismissible(
                   background: Container(
+                    height: 100,
                     color: Colors.red,
                   ),
                   key: ValueKey(Cardlist[index].id.toString()),
@@ -41,56 +41,63 @@ class _AddCartState extends State<AddCart> {
                       Cardlist.removeAt(index);
                     });
                   },
-                  child: Card(
+                  child: SizedBox(
+                    height: 100,
+                    child: Card(
                 child: Row(
-                  children: [Padding(
-                    padding: const EdgeInsets.all(15.0),
-                    child: SizedBox(
-                        width:70,child: Image.asset("${Cardlist[index].url}")
+                    children: [Padding(
+                      padding: const EdgeInsets.all(15.0),
+                      child: SizedBox(
+                          width:70,child: Image.asset("${Cardlist[index].url}")
+                      ),
                     ),
-                  ),
-                    SizedBox(
-                      width: MediaQuery.of(context).size.width-110,
-                      height: MediaQuery.of(context).size.height,
-                      child: Stack(
-                        fit: StackFit.expand,
-                        children:
-                        [
-                          const Positioned(
-                              top: 10,
+                      SizedBox(
+                        width: MediaQuery.of(context).size.width-110,
+                        height: MediaQuery.of(context).size.height,
+                        child: Stack(
+                          fit: StackFit.expand,
+                          children:
+                          [
+                             Positioned(
+                                top: 10,
+                                left: 10,
+                                child: SizedBox(width:200,child: Text
+                                  ("${Cardlist[index].name}",
+                                  style: TextStyle(fontSize: 22,fontWeight: FontWeight.bold),
+                                )
+                                )
+                            ),
+                            Positioned(
+                              bottom: 10,
                               left: 10,
-                              child: SizedBox(width:200,child: Text("dog food",
-                               // style: TextStyle(fontSize: 22,fontWeight: FontWeight.bold),
-                              )
-                              )
-                          ),
-                          Positioned(
-                            bottom: 10,
-                            left: 10,
-                            child: Container(height: 17,
-                              width: 55,
-                              child: Center(child: Text('1.0 kg')),
-                              decoration: BoxDecoration(
-                                  color: Colors.grey,
-                                  border: Border.all(
-                                      width: .5, color: Color(
-                                      0xffa4a4a4)),
-                                  borderRadius: BorderRadius
-                                      .circular(8.0)
+                              child: Container(height: 17,
+                                width: 55,
+                                child: Center(child: Text('1.0 kg')),
+                                decoration: BoxDecoration(
+                                    color: Colors.grey,
+                                    border: Border.all(
+                                        width: .5, color: Color(
+                                        0xffa4a4a4)),
+                                    borderRadius: BorderRadius
+                                        .circular(8.0)
+                                ),
                               ),
                             ),
-                          ),
-                          Positioned(
-                              top: 10,
-                              right: 10,
-                              child: SizedBox(
-                                  width:24,child: IconButton(onPressed: (){
-                              }, icon:const Icon(Icons.delete) )))
-                        ],
-                      ),
-                    ),],
+                            Positioned(
+                                top: 10,
+                                right: 10,
+                                child: SizedBox(
+                                    width:24,child: IconButton(onPressed: (){
+                                  setState(() {
+                                    Cardlist.removeAt(index);
+                                  });
+                                }, icon:const Icon(Icons.delete) )))
+                          ],
+                        ),
+                      ),],
                 ),
-              )
+              ),
+                  )
               );
             }
               ),

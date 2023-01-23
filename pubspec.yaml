@@ -35,6 +35,7 @@ dependencies:
   http:
   easy_sidemenu: ^0.4.1
   fluttertoast: ^8.1.2
+  image_picker: ^0.8.6+1
   flutter:
     sdk: flutter
 

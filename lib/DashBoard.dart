@@ -3,6 +3,8 @@ import 'package:mashood/AddCart.dart';
 import 'package:mashood/HomePage.dart';
 import 'package:mashood/fav.dart';
 
+import 'Person.dart';
+
 class DashBoard extends StatefulWidget {
   const DashBoard({Key? key}) : super(key: key);
 
@@ -26,6 +28,7 @@ class _DashBoardState extends State<DashBoard> {
     HomePage(),
     AddCart(),
     Fav(),
+    Person(),
   ];
   int _index =0;
 
@@ -144,6 +147,25 @@ class _DashBoardState extends State<DashBoard> {
               )
                   : const Icon(
                 Icons.favorite_border,
+                color: Colors.white,
+                size: 35,
+              ),
+            ),
+            IconButton(
+              enableFeedback: false,
+              onPressed: () {
+                setState(() {
+                  _index = 3;
+                });
+              },
+              icon: _index == 3
+                  ? const Icon(
+                Icons.person,
+                color: Colors.white,
+                size: 35,
+              )
+                  : const Icon(
+                Icons.person_outline_outlined,
                 color: Colors.white,
                 size: 35,
               ),
