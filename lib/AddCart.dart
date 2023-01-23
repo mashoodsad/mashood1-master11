@@ -72,7 +72,8 @@ class _AddCartState extends State<AddCart> {
                               left: 10,
                               child: Container(height: 17,
                                 width: 55,
-                                child: Center(child: Text('1.0 kg')),
+                                child:
+                                Center(child: Text('1.0 kg')),
                                 decoration: BoxDecoration(
                                     color: Colors.grey,
                                     border: Border.all(
