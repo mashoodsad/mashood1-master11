@@ -17,7 +17,9 @@ class _PersonState extends State<Person> {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
+    return SizedBox(
+      height: MediaQuery.of(context).size.height,
+      width: MediaQuery.of(context).size.width,
       child: Column(children: [
         const SizedBox(
           child: Padding(
@@ -36,7 +38,7 @@ class _PersonState extends State<Person> {
             Stack(
               children:[ Positioned(
                 child:  Padding(
-                  padding: const EdgeInsets.all(16.0),
+                  padding: const EdgeInsets.all(10.0),
                   child: Align(
                     alignment: Alignment.topLeft,
                     child: SizedBox(
@@ -51,7 +53,7 @@ class _PersonState extends State<Person> {
                 )
               ),
              Padding(
-               padding: const EdgeInsets.only(left: 65,top: 80),
+               padding: const EdgeInsets.only(left: 55,top: 70),
                child: SizedBox(
                     height: 30,
                     width: 30,
