@@ -4,16 +4,18 @@ import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:mashood/AddCart.dart';
 import 'package:mashood/prt.dart';
+import 'package:mashood/sqlhelpeer.dart';
 
 import 'CartPage.dart';
 class HomePage extends StatefulWidget {
-  const HomePage({Key? key}) : super(key: key);
+   HomePage({Key? key}) : super(key: key);
 
   @override
   State<HomePage> createState() => _HomePageState();
 }
 
 class _HomePageState extends State<HomePage> {
+  DBProductManager dbProductManager=DBProductManager();
   late FToast fToast;
   @override
   void initState() {
@@ -253,6 +255,11 @@ class _HomePageState extends State<HomePage> {
                                           decoration: TextDecoration
                                               .lineThrough))),
                                   ElevatedButton(onPressed: () async {
+                                    dbProductManager.insertProduct(Product2(name:plist[index].name ,
+                                        category: plist[index].category,
+                                        price: plist[index].price.toString()
+                                        , offerprice: plist[index].offerprice.toString(),
+                                        status: plist[index].status.toString(), url: plist[index].url));
                                     _showToast();
 
                                     Timer(

@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:mashood/sqlhelpeer.dart';
+import 'package:provider/provider.dart';
 import 'Payment.dart';
+import 'Provide.dart';
 
 class AddCart extends StatefulWidget {
   const AddCart({Key? key}) : super(key: key);
@@ -9,135 +12,92 @@ class AddCart extends StatefulWidget {
 }
 
 class _AddCartState extends State<AddCart> {
-  List<Prt>Cardlist=[
-    Prt(
-      name: "Dog food",
-     url: 'assets/images/ff.jpg'),
-    Prt(
-        name: "Cat food",
-        url: 'assets/images/ff.jpg'),
-  ];
+  DBProductManager dbProductManager=DBProductManager();
+  late List<Product2> plist;
+
+  get width => null;
+
+
   void _naviToPayment(BuildContext context) {
     Navigator.of(context).push(
         MaterialPageRoute(builder: (context) => const Payment()));
   }
   @override
   Widget build(BuildContext context) {
+    var store = Provider.of<Badgeint>(context);
+    GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
+
+
     return Scaffold(
+      key: _scaffoldKey,
       body: Column(
         children: [
           SizedBox(
             height: 400,
             width: MediaQuery.of(context).size.width,
-            child: ListView.builder(
-                scrollDirection: Axis.vertical,
-                shrinkWrap: true,
-                itemCount: Cardlist.length,
-                itemBuilder: (BuildContext context,
-                    int index){
-                  return Dismissible(
-                      background: Container(
-                        height: 100,
-                        color: Colors.red,
-                      ),
-                      key: ValueKey(Cardlist[index].id.toString()),
-                      direction: DismissDirection.endToStart,
-                     // confirmDismiss: (direction){},
-                      onDismissed: (DismissDirection direction){
-                        setState(() {
-                          Cardlist.removeAt(index);
-                        });
-                      },
-                      child: SizedBox(
-                        height: 100,
-                        child: Card(
-                    child: Row(
-                        children: [Padding(
-                          padding: const EdgeInsets.all(15.0),
-                          child: SizedBox(
-                              width:70,child: Image.asset("${Cardlist[index].url}")
-                          ),
-                        ),
-                          SizedBox(
-                            width: MediaQuery.of(context).size.width-110,
-                            height: MediaQuery.of(context).size.height,
-                            child: Stack(
-                              fit: StackFit.expand,
-                              children:
-                              [
-                                 Positioned(
-                                    top: 10,
-                                    left: 10,
-                                    child: SizedBox(width:200,child: Text
-                                      ("${Cardlist[index].name}",
-                                      style: TextStyle(fontSize: 22,fontWeight: FontWeight.bold),
-                                    )
-                                    )
-                                ),
-                                Positioned(
-                                  bottom: 10,
-                                  left: 10,
-                                  child: Container(height: 17,
-                                    width: 55,
-                                    child:
-                                    Center(child: Text('1.0 kg')),
-                                    decoration: BoxDecoration(
-                                        color: Colors.grey,
-                                        border: Border.all(
-                                            width: .5, color: Color(
-                                            0xffa4a4a4)),
-                                        borderRadius: BorderRadius
-                                            .circular(8.0)
-                                    ),
-                                  ),
-                                ),
-                                Positioned(
-                                    top: 10,
-                                    right: 10,
-                                    child: SizedBox(
-                                        width:24,child: IconButton(onPressed: (){
-                                      setState(() {
-                                        Cardlist.removeAt(index);
-                                      });
-                                    }, icon:const Icon(Icons.delete) )))
-                              ],
-                            ),
-                          ),],
-                    ),
-                  ),
-                      )
-                  );
-                }
-                  ),
-          ),
-          SizedBox(
-            height: 50,
-            width: 400,
-            child: Padding(
-              padding: const EdgeInsets.only(top: 8.0),
-              child: ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                      shape: RoundedRectangleBorder( //to set border radius to button
-                          borderRadius: BorderRadius.circular(30),
-                      )
-                  ),
-                  onPressed: (){
-                    _naviToPayment(context);
-                  }, child: Text('CheckOut')
+            child:  FutureBuilder(
+            future: dbProductManager.getProductList(),
+    builder: (context, snapshot) {
+    if (snapshot.hasData) {
+    plist = snapshot.data as List<Product2>;
+    return ListView.builder(
+    shrinkWrap: true,
+    itemCount: plist == null ? 0 : plist.length,
+    itemBuilder: (BuildContext context, int index) {
+    Product2 st = plist[index] as Product2;
+    return Card(
+    child: Row(
+    children: <Widget>[
+    Padding(
+    padding: EdgeInsets.all(16.0),
+    child: SizedBox(
+    width: width * 0.50,
+    child: Column(
+    children: <Widget>[
+    Text('ID: ${st.id}'),
+    Text('Name: ${st.name}'),
+    Text('category: ${st.category}'),
+    ],
+    ),
+    ),
+    ),
+    SizedBox(
+    height: 50,
+    width: 400,
+    child:
 
-              ),
-            ),
-          ),
-        ],
+    Column(
+    mainAxisAlignment: MainAxisAlignment.end,
+    children: [
+    ElevatedButton(
+    style: ElevatedButton.styleFrom(
+    shape: RoundedRectangleBorder( //to set border radius to button
+    borderRadius: BorderRadius.circular(30),
+    )
+    ),
+    onPressed: (){
+    _naviToPayment(context);
+    }, child: Text('CheckOut')
+
+    ),
+    ],
+    ),
+    )
+    ]
+    )
+    );
+    },
+    );
+    }else{
+    return CircularProgressIndicator();}
+    }
+      ),
+      )
+    ]
       ),
          );
   }
+
 }
 
-class Prt {
-  late String name;
-  late String url;
-  Prt({required this.name,required this.url});
 
-  get id => null;
-}
