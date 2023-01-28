@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'Payment.dart';
+import 'Provide.dart';
 
 class AddCart extends StatefulWidget {
   const AddCart({Key? key}) : super(key: key);
@@ -23,7 +25,12 @@ class _AddCartState extends State<AddCart> {
   }
   @override
   Widget build(BuildContext context) {
+    var store = Provider.of<Badgeint>(context);
+    GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
+
+
     return Scaffold(
+      key: _scaffoldKey,
       body: Column(
         children: [
           SizedBox(
