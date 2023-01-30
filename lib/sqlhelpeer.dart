@@ -10,7 +10,7 @@ class DBProductManager {
     _datebase = await openDatabase(join(await getDatabasesPath(), "product.db"),
         version: 1, onCreate: (Database db, int version)
         async {
-          await db.execute("CREATE TABLE product(id INTEGER PRIMARY KEY AUTOINCREMENT,name TEXT,category TEXT,price TEXT,offerprice TEXT,status TEXT,url TEXT)");
+          await db.execute("CREATE TABLE product1(id INTEGER PRIMARY KEY AUTOINCREMENT,name TEXT,category TEXT,price TEXT,offerprice TEXT,status TEXT,url TEXT)");
         });
   }
 
@@ -18,7 +18,7 @@ class DBProductManager {
 
   Future<int> insertProduct(Product2 product) async {
     await openDB();
-    return await _datebase.insert('product', product.toMap());
+    return await _datebase.insert('product1', product.toMap());
 
   }
 
@@ -27,7 +27,7 @@ class DBProductManager {
 
   Future<List<Product2>> getProductList() async {
     await openDB();
-    final List<Map<String, dynamic>> maps = await _datebase.query('product');
+    final List<Map<String, dynamic>> maps = await _datebase.query('product1');
     return List.generate(maps.length, (index) {
       return Product2(id: maps[index]['id'],
           name: maps[index]['name'],
@@ -47,7 +47,7 @@ class DBProductManager {
   //
   Future<void> deleteStudent(int? id) async {
     await openDB();
-    await _datebase.delete("product", where: "id = ? ", whereArgs: [id]);
+    await _datebase.delete("product1", where: "id = ? ", whereArgs: [id]);
   }
 }
 

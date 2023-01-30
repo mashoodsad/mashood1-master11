@@ -13,71 +13,73 @@ class _PaymentState extends State<Payment> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SizedBox(
-        height: MediaQuery.of(context).size.height,
-        width: MediaQuery.of(context).size.width,
-        child: Column(
-          children: [
-            Row(
-              children: [
-                IconButton(onPressed: (){
-                  Navigator.of(context).pop();
-                }, icon: Icon(Icons.arrow_back_outlined)),
-                const Text("Payments",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 20),),
-              ],
-            ),
+      body: SafeArea(
+        child: SizedBox(
+          height: MediaQuery.of(context).size.height,
+          width: MediaQuery.of(context).size.width,
+          child: Column(
+            children: [
+              Row(
+                children: [
+                  IconButton(onPressed: (){
+                    Navigator.of(context).pop();
+                  }, icon: Icon(Icons.arrow_back_outlined)),
+                  const Text("Payments",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 20),),
+                ],
+              ),
     Column(
     children: <Widget>[
-      Column(
-        children: [
+        Column(
+          children: [
 
-          RadioListTile(
-            title: Text("UPI"),
-            value: "UPI",
-            groupValue: payment,
-            onChanged: (value){
-              setState(() {
-                payment = value.toString();
-              });
-            },
-          ),
+            RadioListTile(
+              title: Text("UPI"),
+              value: "UPI",
+              groupValue: payment,
+              onChanged: (value){
+                setState(() {
+                  payment = value.toString();
+                });
+              },
+            ),
 
-          RadioListTile(
-            title: Text("Credit/Debit Card"),
-            value: "Card",
-            groupValue: payment,
-            onChanged: (value){
-              setState(() {
-                payment = value.toString();
-              });
-            },
-          ),
+            RadioListTile(
+              title: Text("Credit/Debit Card"),
+              value: "Card",
+              groupValue: payment,
+              onChanged: (value){
+                setState(() {
+                  payment = value.toString();
+                });
+              },
+            ),
 
-          RadioListTile(
-            title: Text("COD"),
-            value: "COD",
-            groupValue: payment,
-            onChanged: (value){
-              setState(() {
-                payment = value.toString();
-              });
-            },
-          ),
-          RadioListTile(
-            title: Text("NetBanking"),
-            value: "NetBanking",
-            groupValue: payment,
-            onChanged: (value){
-              setState(() {
-                payment = value.toString();
-              });
-            },
-          )
+            RadioListTile(
+              title: Text("COD"),
+              value: "COD",
+              groupValue: payment,
+              onChanged: (value){
+                setState(() {
+                  payment = value.toString();
+                });
+              },
+            ),
+            RadioListTile(
+              title: Text("NetBanking"),
+              value: "NetBanking",
+              groupValue: payment,
+              onChanged: (value){
+                setState(() {
+                  payment = value.toString();
+                });
+              },
+            )
 
-        ],
-      )
-     ])
           ],
+        )
+     ])
+            ],
+          ),
         ),
       ),
     );

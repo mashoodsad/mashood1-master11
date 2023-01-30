@@ -38,6 +38,7 @@ class _DashBoardState extends State<DashBoard> {
 
   Widget build(BuildContext context) {
     var store = Provider.of<Badgeint>(context);
+    store.increment();
 
     return Scaffold(
       key: _scaffoldKey,
