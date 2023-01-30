@@ -8,7 +8,7 @@ import 'package:mashood/sqlhelpeer.dart';
 
 import 'CartPage.dart';
 class HomePage extends StatefulWidget {
-   HomePage({Key? key}) : super(key: key);
+   const HomePage({Key? key}) : super(key: key);
 
   @override
   State<HomePage> createState() => _HomePageState();
@@ -34,7 +34,7 @@ class _HomePageState extends State<HomePage> {
       ),
       child: Row(
         mainAxisSize: MainAxisSize.min,
-        children: [
+        children: const [
           Icon(Icons.check),
           SizedBox(
             width: 12.0,
@@ -45,7 +45,7 @@ class _HomePageState extends State<HomePage> {
     );
     fToast.showToast(
       child: toast,
-      toastDuration: Duration(seconds: 1),
+      toastDuration: const Duration(seconds: 1),
       gravity: ToastGravity.CENTER,
     ); // Custom Toast Position
   }
@@ -90,7 +90,7 @@ class _HomePageState extends State<HomePage> {
 
   void _naviAddCart(BuildContext context) {
     Navigator.of(context).push(
-        MaterialPageRoute(builder: (context) => AddCart()));
+        MaterialPageRoute(builder: (context) => const AddCart()));
   }
   void _navitoCart(BuildContext context,) {
     Navigator.of(context).push(
@@ -154,7 +154,7 @@ class _HomePageState extends State<HomePage> {
                             .of(context)
                             .size
                             .width,
-                        child: Container(
+                        child: SizedBox(
                             height: 200,
                             width: MediaQuery
                                 .of(context)
@@ -169,14 +169,12 @@ class _HomePageState extends State<HomePage> {
                                   return
                                     Padding(
                                       padding: const EdgeInsets.all(8.0),
-                                      child: Container(
+                                      child: SizedBox(
                                           height: 120,
                                           width: 120,
-                                          child: Container(
-                                            child: CircleAvatar(
-                                              backgroundImage: NetworkImage(
-                                                  '${plist[index].url}'),),
-                                          )
+                                          child: CircleAvatar(
+                                            backgroundImage: NetworkImage(
+                                                plist[index].url),)
                                       ),
                                     );
                                 })))),
@@ -196,14 +194,14 @@ class _HomePageState extends State<HomePage> {
                           child: Container(
                             height: 216,
                             decoration: BoxDecoration(
-                                border: Border.all(width: .5, color: Color(
+                                border: Border.all(width: .5, color: const Color(
                                     0xffa4a4a4)),
                                 borderRadius: BorderRadius.circular(10.0)
                             ),
 
                             child: Column(
                               children: [
-                                Container(
+                                SizedBox(
                                   height: 108,
                                   child: Stack(
                                       children: [
@@ -214,22 +212,22 @@ class _HomePageState extends State<HomePage> {
                                                 .size
                                                 .width,
                                             child: Image.network(
-                        '${plist[index].url}',
+                        plist[index].url,
                                               fit: BoxFit.cover,)),
                                         Positioned(
                                             top: 10,
                                             right: 10,
                                             child: Container(height: 16,
                                               width: 32,
-                                              child: Text('4.0'),
                                               decoration: BoxDecoration(
                                                   color: Colors.grey,
                                                   border: Border.all(
-                                                      width: .5, color: Color(
+                                                      width: .5, color: const Color(
                                                       0xffa4a4a4)),
                                                   borderRadius: BorderRadius
                                                       .circular(8.0)
                                               ),
+                                              child: const Text('4.0'),
                                             ))
                                       ]
                                   ),
@@ -238,19 +236,19 @@ class _HomePageState extends State<HomePage> {
                                 SizedBox(
                                   height: 18, child: Row(children: [
                                   Text(plist[index].category,
-                                    style: TextStyle(fontSize: 12),),
+                                    style: const TextStyle(fontSize: 12),),
                                   Text(plist[index].status
                                       ? "instock"
-                                      : "out of Stock", style: TextStyle(
+                                      : "out of Stock", style: const TextStyle(
                                       fontSize: 8, color: Colors.green))
                                 ],),),
                                 SizedBox(
                                   height: 23, child: Row(children: [
                                   Text(plist[index].offerprice.toString(),
-                                    style: TextStyle(fontSize: 12),),
+                                    style: const TextStyle(fontSize: 12),),
                                   Expanded(child: Text(
                                       plist[index].price.toString(),
-                                      style: TextStyle(fontSize: 8,
+                                      style: const TextStyle(fontSize: 8,
                                           color: Colors.green,
                                           decoration: TextDecoration
                                               .lineThrough))),
@@ -270,7 +268,7 @@ class _HomePageState extends State<HomePage> {
 
 
                                   },
-                                      child: Text("Add Cart",
+                                      child: const Text("Add Cart",
                                         style: TextStyle(fontSize: 12),))
                                 ],),)
 

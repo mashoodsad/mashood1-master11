@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mashood/sqlhelpeer.dart';
-import 'package:provider/provider.dart';
 import 'Payment.dart';
-import 'Provide.dart';
+
 
 class AddCart extends StatefulWidget {
   const AddCart({Key? key}) : super(key: key);
@@ -30,7 +29,7 @@ class _AddCartState extends State<AddCart> {
       key: _scaffoldKey,
       body: Column(children: [
         SizedBox(
-          height: 400,
+          height: 700,
           width: MediaQuery.of(context).size.width,
           child: FutureBuilder(
               future: dbProductManager.getProductList(),
@@ -43,20 +42,31 @@ class _AddCartState extends State<AddCart> {
                     itemBuilder: (BuildContext context, int index) {
                       Product2 st = plist[index];
                       return Card(
-                          child: Row(children: <Widget>[
-                        Padding(
-                          padding: EdgeInsets.all(16.0),
                           child: SizedBox(
-                            width: MediaQuery.of(context).size.width ,
-                            child: Column(
-                              children: <Widget>[
-                                Text('Name: ${st.name}'),
-                                Text('category: ${st.category}'),
+                            width: MediaQuery.of(context).size.width,
+                            child: Row(children: <Widget>[
+                        Padding(
+                            padding: const EdgeInsets.all(16.0),
+                            child: Row(
+                              children: [
+                                SizedBox(
+                                    height: 50,
+                                    width: 50,
+                                    child: Image.network(st.url)),
+                                Column(
+                                  children: <Widget>[
+                                    Text('Name: ${st.name}'),
+                                    Text('category: ${st.category}'),
+                                  ],
+                                ),
+                                   IconButton(onPressed: (){
+
+                                  }, icon: const Icon(Icons.delete)),
                               ],
                             ),
-                          ),
                         ),
-                      ]));
+                      ]),
+                          ));
                     },
                   );
                 } else {

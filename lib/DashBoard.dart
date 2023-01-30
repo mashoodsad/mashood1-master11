@@ -21,21 +21,16 @@ class _DashBoardState extends State<DashBoard> {
         MaterialPageRoute(builder: (context) =>const AddCart()));
   }
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
-  void _onItemTapped(int index) {
-    setState(() {
-      _index = index;
-    });
-  }
-  @override
   List<Widget> mylist =[
     HomePage(),
-    AddCart(),
-    Fav(),
-    Person(),
+    const AddCart(),
+    const Fav(),
+    const Person(),
   ];
   int _index =0;
 
 
+  @override
   Widget build(BuildContext context) {
     var store = Provider.of<Badgeint>(context);
     store.increment();
@@ -46,20 +41,20 @@ class _DashBoardState extends State<DashBoard> {
       actions: [Padding(
         padding: const EdgeInsets.all(10.0),
         child: Badge(
-          child: Icon(Icons.shopping_cart, size: 40, color: Colors.white,),
           showBadge: store.count > 0,//icon style
           badgeContent: SizedBox(
               width: 20, height: 20, //badge size
               child:Center(  //aligh badge content to center
                 child:
-                Text(store.count.toString(), style: TextStyle(
+                Text(store.count.toString(), style: const TextStyle(
                     color: Colors.white,  //badge font color
                     fontSize: 20 //badge font size
                 )
                 ),
               )
           ),
-          badgeColor: Colors.purple, //badge background color
+          badgeColor: Colors.purple,
+          child: const Icon(Icons.shopping_cart, size: 40, color: Colors.white,), //badge background color
         ),
       )]
       ,leading: SizedBox(height: 50,width: 50,child: CircleAvatar(
@@ -73,13 +68,13 @@ class _DashBoardState extends State<DashBoard> {
         child: ListView(
           children:  [
             DrawerHeader(
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                 color: Colors.blue,
               ),
               child: Row(
                 children: [
-                  IconButton(onPressed: (){_scaffoldKey.currentState!.closeDrawer();}, icon: Icon(Icons.arrow_back)),
-                  Text('Drawer Header'),
+                  IconButton(onPressed: (){_scaffoldKey.currentState!.closeDrawer();}, icon: const Icon(Icons.arrow_back)),
+                  const Text('Drawer Header'),
                 ],
               ),
             ),
