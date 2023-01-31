@@ -29,7 +29,7 @@ class _AddCartState extends State<AddCart> {
       key: _scaffoldKey,
       body: Column(children: [
         SizedBox(
-          height: 700,
+          height: MediaQuery.of(context).size.height-100,
           width: MediaQuery.of(context).size.width,
           child: FutureBuilder(
               future: dbProductManager.getProductList(),

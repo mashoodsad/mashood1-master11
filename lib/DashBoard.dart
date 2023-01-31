@@ -1,4 +1,4 @@
-import 'package:badges/badges.dart';
+import 'package:badges/badges.dart'as badges;
 import 'package:flutter/material.dart';
 import 'package:mashood/AddCart.dart';
 import 'package:mashood/HomePage.dart';
@@ -16,6 +16,7 @@ class DashBoard extends StatefulWidget {
 }
 
 class _DashBoardState extends State<DashBoard> {
+
   void _navigateToAddCart(BuildContext context) {
     Navigator.of(context).push(
         MaterialPageRoute(builder: (context) =>const AddCart()));
@@ -40,7 +41,7 @@ class _DashBoardState extends State<DashBoard> {
       appBar: AppBar(
       actions: [Padding(
         padding: const EdgeInsets.all(10.0),
-        child: Badge(
+        child: badges.Badge(
           showBadge: store.count > 0,//icon style
           badgeContent: SizedBox(
               width: 20, height: 20, //badge size
@@ -53,7 +54,6 @@ class _DashBoardState extends State<DashBoard> {
                 ),
               )
           ),
-          badgeColor: Colors.purple,
           child: const Icon(Icons.shopping_cart, size: 40, color: Colors.white,), //badge background color
         ),
       )]

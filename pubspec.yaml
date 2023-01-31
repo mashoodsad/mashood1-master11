@@ -33,11 +33,10 @@ dependencies:
   pin_code_fields: ^7.4.0
   carousel_slider: ^4.2.1
   http:
-  easy_sidemenu: ^0.4.1
   fluttertoast: ^8.1.2
   image_picker: ^0.8.6+1
   provider: ^6.0.5
-  badges: ^2.0.2
+  badges: ^3.0.2
   sqflite: ^2.0.2+1
   path:
   flutter:
