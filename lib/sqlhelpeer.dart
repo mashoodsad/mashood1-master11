@@ -45,7 +45,7 @@ class DBProductManager {
   //   return await _datebase.update('product', product.toMap(), where: 'id=?', whereArgs: [product.id]);
   // }
   //
-  Future<void> deleteStudent(int? id) async {
+  Future<void> deleteProduct(int? id) async {
     await openDB();
     await _datebase.delete("product1", where: "id = ? ", whereArgs: [id]);
   }
