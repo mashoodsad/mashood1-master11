@@ -27,7 +27,7 @@ class _HomePageState extends State<HomePage> {
     Widget toast = Container(
       height: 100,
       padding: const EdgeInsets.symmetric(
-          horizontal: 124.0, vertical: 120.0),
+          horizontal: 100.0, vertical: 100.0),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(25.0),
         color: Colors.greenAccent,
@@ -46,7 +46,7 @@ class _HomePageState extends State<HomePage> {
     fToast.showToast(
       child: toast,
       toastDuration: const Duration(seconds: 1),
-      gravity: ToastGravity.CENTER,
+      gravity: ToastGravity.BOTTOM,
     ); // Custom Toast Position
   }
   List<Product> plist = [

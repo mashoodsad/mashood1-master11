@@ -16,6 +16,9 @@ class _AddCartState extends State<AddCart> {
 
   get width => null;
 
+  get id => null;
+
+
   void _naviToPayment(BuildContext context) {
     Navigator.of(context)
         .push(MaterialPageRoute(builder: (context) => const Payment()));
@@ -29,7 +32,7 @@ class _AddCartState extends State<AddCart> {
       key: _scaffoldKey,
       body: Column(children: [
         SizedBox(
-          height: MediaQuery.of(context).size.height-100,
+          height: MediaQuery.of(context).size.height-250,
           width: MediaQuery.of(context).size.width,
           child: FutureBuilder(
               future: dbProductManager.getProductList(),
@@ -40,32 +43,56 @@ class _AddCartState extends State<AddCart> {
                     shrinkWrap: true,
                     itemCount: plist == null ? 0 : plist.length,
                     itemBuilder: (BuildContext context, int index) {
-                      Product2 st = plist[index];
-                      return Card(
-                          child: SizedBox(
-                            width: MediaQuery.of(context).size.width,
-                            child: Row(children: <Widget>[
-                        Padding(
-                            padding: const EdgeInsets.all(16.0),
-                            child: Row(
-                              children: [
-                                SizedBox(
-                                    height: 50,
-                                    width: 50,
-                                    child: Image.network(st.url)),
-                                Column(
-                                  children: <Widget>[
-                                    Text('Name: ${st.name}'),
-                                    Text('category: ${st.category}'),
-                                  ],
-                                ),
-                                   IconButton(onPressed: (){
+                      final Product2 st = plist[index];
 
-                                  }, icon: const Icon(Icons.delete)),
-                              ],
+                      return Card(
+                          child: Dismissible(
+                            direction: DismissDirection.endToStart,
+                            key: UniqueKey(),
+                            onDismissed: (DismissDirection direction) {
+                              dbProductManager.deleteProduct(st.id);
+                              setState(() {
+                                plist.removeAt(index);
+                              });
+                            },
+                            background: const ColoredBox(
+                              color: Colors.red,
+                              child: Align(
+                                alignment: Alignment.centerRight,
+                                child: Padding(
+                                  padding: EdgeInsets.all(16.0),
+                                  child: Icon(Icons.delete, color: Colors.white),
+                                ),
+                              ),
                             ),
+                            child: SizedBox(
+                              width: MediaQuery.of(context).size.width,
+                              child: Row(children: <Widget>[
+                        Padding(
+                              padding: const EdgeInsets.all(16.0),
+                              child: Row(
+                                children: [
+                                  SizedBox(
+                                      height: 50,
+                                      width: 50,
+                                      child: Image.network(st.url)),
+                                  Column(
+                                    children: <Widget>[
+                                      Text('Name: ${st.name}'),
+                                      Text('category: ${st.category}'),
+                                    ],
+                                  ),
+                                     IconButton(onPressed: (){
+                                       dbProductManager.deleteProduct(st.id);
+                                       setState(() {
+                                         plist.removeAt(index);
+                                       });
+                                    }, icon: const Icon(Icons.delete)),
+                                ],
+                              ),
                         ),
                       ]),
+                            ),
                           ));
                     },
                   );
@@ -90,3 +117,5 @@ class _AddCartState extends State<AddCart> {
     );
   }
 }
+
+
